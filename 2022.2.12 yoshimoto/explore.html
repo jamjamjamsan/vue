@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="keyword" class="name">
+    <div v-for="users in inputName" v-bind:key="users.id">
+      <div v-text="users.name"></div>
+    </div>
+
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          
+          users: [
+            {
+              id: 1,
+              name: "佐藤"
+            },
+            {
+              id: 2,
+              name: "山田"
+            },
+            {
+              id: 3,
+              name: "鈴木"
+            },
+            {
+              id: 4,
+              name: "田中"
+            }
+          ],
+          keyword: "",
+        }
+      },
+      
+      computed: {
+        inputName() {
+          var users = [];
+          for (var i in this.users) {
+            var user = this.users[i];
+            if (user.name.indexOf(this.keyword) !== -1) {
+              users.push(user);
+            }
+          }
+          return users;
+        }
+      },
+     
+    });
+  </script>
+  <style>
+    .name {
+      border: 2px solid rgb(15, 179, 15);
+      border-radius: 1px;
+    }
+   
+  </style>
+
+</body>
+
+</html>
